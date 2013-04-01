@@ -10,6 +10,13 @@ from notice import app
 manager = Manager(app)
 
 
+class RefreshDB(Command):
+    def run(self):
+        from notice import db
+        db.drop_all()
+        db.create_all()
+
+
 # turn on debugger and reloader
 manager.add_command('runserver', Server(
     use_debugger=True,
@@ -17,6 +24,7 @@ manager.add_command('runserver', Server(
     host='0.0.0.0',
     port=5000)
 )
+manager.add_command('refreshdb', RefreshDB())
 
 
 if __name__ == '__main__':
