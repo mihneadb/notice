@@ -1,31 +1,10 @@
+#!/usr/bin/env python
 import os
 import sys
 
-from flask.ext.script import Manager, Server, Command
+if __name__ == "__main__":
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "notice.settings")
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+    from django.core.management import execute_from_command_line
 
-from notice import app
-
-manager = Manager(app)
-
-
-class RefreshDB(Command):
-    def run(self):
-        from notice import db
-        db.drop_all()
-        db.create_all()
-
-
-# turn on debugger and reloader
-manager.add_command('runserver', Server(
-    use_debugger=True,
-    use_reloader=True,
-    host='0.0.0.0',
-    port=5000)
-)
-manager.add_command('refreshdb', RefreshDB())
-
-
-if __name__ == '__main__':
-    manager.run()
+    execute_from_command_line(sys.argv)
