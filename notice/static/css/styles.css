@@ -1,4 +1,8 @@
 body {
-    padding-top: 100px;
+    /*padding-top: 100px;*/
 }
 
+.navbar {
+    /*width: 50%;*/
+    padding: 0px 100px;
+}
