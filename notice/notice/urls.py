@@ -9,7 +9,10 @@ urlpatterns = patterns('',
     # url(r'^$', 'notice.views.home', name='home'),
     # url(r'^notice/', include('notice.foo.urls')),
     url(r'^$', 'board.views.homepage', name='homepage'),
-    url(r'^login/$', 'django.contrib.auth.views.login', {
+    url(r'^post/add$', 'board.views.post_add', name='post_add'),
+
+
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', {
         'template_name': 'login.html',
     }, name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {

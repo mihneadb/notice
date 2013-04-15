@@ -5,16 +5,20 @@
         <h1>Anunțuri</h1>
 
         {% for p in posts %}
-            <div class="well">
-                <h5>{{ p.title }}</h5>
-                <div>
+            <div class="span3"></div>
+            <div class="span6">
+                <h3>{{ p.title }}</h3>
+                <div class="well">
                     {{ p.text }}
                 </div>
                 <span class="pull-right">scris de {{ p.author }} la {{ p.date }}</span>
             </div>
+            <div class="span3"></div>
         {% endfor %}
     {% else %}
         <h1>Nu există anunțuri.</h1>
     {% endif %}
+    <div class="clearfix"></div>
+    <a class="btn" href="{% url 'post_add' %}">Adaugă anunț</a>
 
 {% endblock %}
