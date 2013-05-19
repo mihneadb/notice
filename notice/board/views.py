@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
-from models import Post, Comment
+from models import Post, Comment, Category
 from forms import PostForm, CommentForm
 
 
@@ -95,4 +95,16 @@ def register(request):
         'form': form,
     }
     return render_to_response('register.html', data, context_instance=RequestContext(request))
+
+
+def category_list(request, id):
+    category = get_object_or_404(Category, id=id)
+    posts = category.post_set.order_by('-date').all()
+
+    data = {
+        'posts': posts,
+        'category': category,
+    }
+
+    return render_to_response('category.html', data, context_instance=RequestContext(request))
 

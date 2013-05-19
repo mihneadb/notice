@@ -1,0 +1,14 @@
+    <div class="post-snip">
+        <div class="row-fluid">
+            <div class="span3"></div>
+            <div class="span6">
+                <h3><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h3>
+                <div class="well post-text">
+                    {{ post.text }}
+                </div>
+                <span class="pull-left"><a href="{% url 'post_detail' post.id %}">Citește tot</a></span>
+                <span class="pull-right">scris de {{ post.author }} in <a href="{% url 'category_list' post.category.id %}">{{ post.category }}</a> la {{ post.date }}</span>
+            </div>
+            <div class="span3"></div>
+        </div>
+    </div>

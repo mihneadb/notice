@@ -22,3 +22,17 @@ body {
     width: 98%;
 }
 
+.post-text {
+    max-height: 15em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.post-snip {
+    margin-bottom: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
