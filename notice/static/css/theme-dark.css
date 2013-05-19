@@ -1,0 +1,7 @@
+.navbar-inner {
+    background-image: linear-gradient(to bottom, rgb(100, 100, 100), rgb(120, 25, 120)) !important;
+}
+
+.well {
+    background-color: rgba(170, 170, 140, 0.4) !important;
+}

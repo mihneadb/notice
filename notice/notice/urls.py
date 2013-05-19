@@ -22,6 +22,8 @@ urlpatterns = patterns('',
 
     url(r'^comment/add/(?P<id>\d+)$', 'board.views.comment_add', name='comment_add'),
 
+    url(r'^change_theme/$', 'board.views.change_theme', name='change_theme'),
+
 
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {
         'template_name': 'login.html',

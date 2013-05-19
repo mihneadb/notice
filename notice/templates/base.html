@@ -7,6 +7,9 @@
     <title>Notice</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% if user|theme %}
+    <link rel="stylesheet" href="{% static 'css/theme-dark.css' %}">
+    {% endif %}
 </head>
 
 <body>
@@ -42,6 +45,9 @@
 {% endblock %}
 
 <div class="container-fluid">
+    {% if user.is_superuser or perms.board.rights %}
+        <a href="{% url 'change_theme' %}" class="btn pull-right">Schimba tema</a>
+    {% endif %}
     {% block page_header %}{% endblock %}
     {% block content %}{% endblock %}
 </div>

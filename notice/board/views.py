@@ -6,6 +6,10 @@ from django.contrib.auth.forms import UserCreationForm
 
 from models import Post, Comment, Category
 from forms import PostForm, CommentForm, CategoryForm
+from notice.settings import PROJECT_PATH
+
+import shutil
+import os
 
 
 def homepage(request):
@@ -155,5 +159,16 @@ def category_edit(request, id):
 def category_delete(request, id):
     category = get_object_or_404(Category, id=id)
     category.delete()
+    return redirect('homepage')
+
+
+@login_required
+def change_theme(request):
+    path = "theme"
+    if os.path.exists(os.path.join(PROJECT_PATH, path)):
+        os.unlink(os.path.join(PROJECT_PATH, path))
+    else:
+        f = open(os.path.join(PROJECT_PATH, path), 'w')
+        f.close()
     return redirect('homepage')
 
