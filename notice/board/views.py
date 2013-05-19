@@ -2,9 +2,10 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 
 from models import Post, Comment
-from forms import PostForm
+from forms import PostForm, CommentForm
 
 
 def homepage(request):
@@ -52,9 +53,14 @@ def post_edit(request, id):
 
 def post_detail(request, id):
     post = get_object_or_404(Post, id=id)
+    form = CommentForm()
+
+    comments = post.comment_set.order_by('-date').all()
 
     data = {
         'post': post,
+        'form': form,
+        'comments': comments,
     }
     return render_to_response('post_detail.html', data, context_instance=RequestContext(request))
 
@@ -64,4 +70,29 @@ def post_delete(request, id):
     post = get_object_or_404(Post, id=id)
     post.delete()
     return redirect('homepage')
+
+
+@login_required
+def comment_add(request, id):
+    post = get_object_or_404(Post, id=id)
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        text = form.cleaned_data['text']
+        comment = Comment(text=text, author=request.user, post=post)
+        comment.save()
+    return redirect('post_detail', id)
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return redirect('homepage')
+    else:
+        form = UserCreationForm()
+    data = {
+        'form': form,
+    }
+    return render_to_response('register.html', data, context_instance=RequestContext(request))
 

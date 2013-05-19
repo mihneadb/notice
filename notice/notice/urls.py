@@ -14,6 +14,8 @@ urlpatterns = patterns('',
     url(r'^post/delete/(?P<id>\d+)$', 'board.views.post_delete', name='post_delete'),
     url(r'^post/detail/(?P<id>\d+)$', 'board.views.post_detail', name='post_detail'),
 
+    url(r'^comment/add/(?P<id>\d+)$', 'board.views.comment_add', name='comment_add'),
+
 
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {
         'template_name': 'login.html',
@@ -21,6 +23,8 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'django.contrib.auth.views.logout', {
         'next_page': '/',
     }, name='logout'),
+
+    url('^accounts/register/$', 'board.views.register', name='register'),
 
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block page_header %}
+
+<h3>Register</h3>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row-fluid">
+    <form class="post-form offset2 well" action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Register" />
+    </form>
+</div>
+
+{% endblock %}
+

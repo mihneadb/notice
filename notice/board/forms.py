@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django import forms
 
 from models import Post, Comment
 
@@ -8,8 +9,6 @@ class PostForm(ModelForm):
         model = Post
         exclude = ['author', 'date']
 
-class CommentForm(ModelForm):
-    class Meta:
-        model = Comment
-        fields = ['text']
+class CommentForm(forms.Form):
+    text = forms.CharField(widget=forms.Textarea, label='')
 

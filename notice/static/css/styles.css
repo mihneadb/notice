@@ -11,6 +11,14 @@ body {
 }
 
 .post-form * {
-    width: 100%;
+    width: 98%;
+}
+
+.comment-form {
+    display: inline-block;
+}
+
+.comment-form * {
+    width: 98%;
 }
 

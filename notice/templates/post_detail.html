@@ -18,4 +18,30 @@
     <span class="pull-right">scris de {{ post.author }} la {{ post.date }}</span>
 </div>
 
+<div class="comments">
+    <h4>Comentarii</h4>
+
+    {% for c in comments %}
+    <div class="row-fluid">
+        <div class="comment well offset3 span5">
+            <p>{{ c.text }}</p>
+            <span class="pull-right">scris de {{ c.author }} la {{ c.date }}</span>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="row-fluid">
+    {% if user.is_authenticated %}
+        <form class="comment-form well offset3 span5" action="{% url 'comment_add' post.id %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Adaugă comentariu" />
+        </form>
+    {% else %}
+    <span class="offset3 span5"><p>Trebuie să te <a href={% url 'login' %}>autentifici</a> pentru a putea
+        adăuga comentarii.</p></span>
+    {% endif %}
+</div>
+</div>
+
 {% endblock %}
