@@ -2,6 +2,9 @@
 
 {% block page_header %}
 
+<a class="btn" href="{% url 'category_edit' category.id %}">Modifică categorie</a>
+<a class="btn" href="{% url 'category_delete' category.id %}">Șterge categorie</a>
+
 <h3>{{ category }}</h3>
 
 {% endblock %}

@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
 from models import Post, Comment, Category
-from forms import PostForm, CommentForm
+from forms import PostForm, CommentForm, CategoryForm
 
 
 def homepage(request):
@@ -116,4 +116,44 @@ def categories(request):
         'categories': categories,
     }
     return render_to_response('categories.html', data, context_instance=RequestContext(request))
+
+
+@login_required
+def category_add(request):
+    if request.method == 'GET':
+        form = CategoryForm()
+    else:
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            category = form.save()
+            return redirect('homepage')
+
+    data = {
+        'form':form,
+    }
+    return render_to_response('category_add.html', data, context_instance=RequestContext(request))
+
+
+@login_required
+def category_edit(request, id):
+    category = get_object_or_404(Category, id=id)
+    if request.method == 'GET':
+        form = CategoryForm(instance=category)
+    else:
+        form = CategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+            return redirect('category_list', id=id)
+
+    data = {
+        'form': form,
+        'category': category,
+    }
+    return render_to_response('category_edit.html', data, context_instance=RequestContext(request))
+
+@login_required
+def category_delete(request, id):
+    category = get_object_or_404(Category, id=id)
+    category.delete()
+    return redirect('homepage')
 

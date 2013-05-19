@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block page_header %}
+
+<h3>Modificare categorie</h3>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row-fluid">
+    <form class="well" action="{% url 'category_edit' category.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Salvează" />
+    </form>
+</div>
+
+{% endblock %}
+
