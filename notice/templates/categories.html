@@ -15,6 +15,9 @@
     {% endfor %}
     </ul>
 </div>
+
+{% if perms.board.rights %}
 <a class="btn" href="{% url 'category_add' %}">Adaugă categorie</a>
+{% endif %}
 
 {% endblock %}

@@ -2,8 +2,10 @@
 
 {% block page_header %}
 
+{% if perms.board.rights %}
 <a class="btn" href="{% url 'category_edit' category.id %}">Modifică categorie</a>
 <a class="btn" href="{% url 'category_delete' category.id %}">Șterge categorie</a>
+{% endif %}
 
 <h3>{{ category }}</h3>
 

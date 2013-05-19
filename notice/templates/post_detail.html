@@ -1,9 +1,12 @@
 {% extends "base.html" %}
+{% load tags %}
 
 {% block page_header %}
 
+{% if perms.board.rights %}
 <a class="btn" href="{% url 'post_edit' post.id %}">Modifică anunț</a>
 <a class="btn" href="{% url 'post_delete' post.id %}">Șterge anunț</a>
+{% endif %}
 
 <h3>{{ post.title }}</h3>
 
@@ -23,7 +26,7 @@
 
     {% for c in comments %}
     <div class="row-fluid">
-        <div class="comment well offset3 span5">
+        <div class="comment well offset3 span5 {% if c.author|is_imp %}important-comment{% endif %}">
             <p>{{ c.text }}</p>
             <span class="pull-right">scris de {{ c.author }} la {{ c.date }}</span>
         </div>

@@ -41,3 +41,7 @@ h1 {
     width: 20%;
 }
 
+.important-comment {
+    background-color: rgba(77, 163, 78, 0.5) !important;
+}
+

@@ -55,7 +55,7 @@ def post_detail(request, id):
     post = get_object_or_404(Post, id=id)
     form = CommentForm()
 
-    comments = post.comment_set.order_by('-date').all()
+    comments = post.comment_set.order_by('date').all()
 
     data = {
         'post': post,

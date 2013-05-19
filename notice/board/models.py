@@ -6,6 +6,10 @@ from datetime import datetime
 
 
 class Category(models.Model):
+    class Meta:
+        permissions = (
+                ('rights', "Can edit categories"),
+        )
     name = models.CharField(max_length=20)
     parent = models.ForeignKey('Category', null=True, blank=True, default=None)
 
@@ -13,6 +17,10 @@ class Category(models.Model):
         return unicode(self.name)
 
 class Post(models.Model):
+    class Meta:
+        permissions = (
+                ('rights', "Can edit posts"),
+        )
     title = models.CharField(max_length=100)
     text = models.TextField(max_length=1000)
     date = models.DateTimeField(default=datetime.now)
@@ -24,6 +32,10 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
+    class Meta:
+        permissions = (
+                ('important', "Replies are important"),
+        )
     text = models.TextField(max_length=300)
     date = models.DateTimeField(default=datetime.now)
     author = models.ForeignKey(User)
@@ -32,3 +44,5 @@ class Comment(models.Model):
 
 admin.site.register(Post)
 admin.site.register(Comment)
+admin.site.register(Category)
+
