@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block page_header %}
+
+<a class="btn" href="{% url 'post_edit' post.id %}">Modifică</a>
+<a class="btn" href="{% url 'post_delete' post.id %}">Șterge</a>
+
+<h3>{{ post.title }}</h3>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row-fluid">
+    <div class="post-form span12 well">
+        {{ post.text }}
+    </div>
+    <span class="pull-right">scris de {{ post.author }} la {{ post.date }}</span>
+</div>
+
+{% endblock %}

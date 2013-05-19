@@ -30,3 +30,38 @@ def post_add(request):
         'form':form,
     }
     return render_to_response('post_add.html', data, context_instance=RequestContext(request))
+
+
+@login_required
+def post_edit(request, id):
+    post = get_object_or_404(Post, id=id)
+    if request.method == 'GET':
+        form = PostForm(instance=post)
+    else:
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('homepage')
+
+    data = {
+        'form': form,
+        'post': post,
+    }
+    return render_to_response('post_edit.html', data, context_instance=RequestContext(request))
+
+
+def post_detail(request, id):
+    post = get_object_or_404(Post, id=id)
+
+    data = {
+        'post': post,
+    }
+    return render_to_response('post_detail.html', data, context_instance=RequestContext(request))
+
+
+@login_required
+def post_delete(request, id):
+    post = get_object_or_404(Post, id=id)
+    post.delete()
+    return redirect('homepage')
+

@@ -3,6 +3,14 @@ body {
 }
 
 .navbar {
-    /*width: 50%;*/
-    padding: 0px 100px;
+    width: 100%;
 }
+
+.post-form {
+    display: inline-block;
+}
+
+.post-form * {
+    width: 100%;
+}
+
