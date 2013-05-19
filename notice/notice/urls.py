@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^post/detail/(?P<id>\d+)$', 'board.views.post_detail', name='post_detail'),
 
     url(r'^category/(?P<id>\d+)$', 'board.views.category_list', name='category_list'),
+    url(r'^categories/$', 'board.views.categories', name='categories'),
 
     url(r'^comment/add/(?P<id>\d+)$', 'board.views.comment_add', name='comment_add'),
 

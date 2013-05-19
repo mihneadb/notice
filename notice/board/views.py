@@ -108,3 +108,12 @@ def category_list(request, id):
 
     return render_to_response('category.html', data, context_instance=RequestContext(request))
 
+
+def categories(request):
+    categories = Category.objects.order_by('name').all()
+
+    data = {
+        'categories': categories,
+    }
+    return render_to_response('categories.html', data, context_instance=RequestContext(request))
+

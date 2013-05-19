@@ -36,3 +36,8 @@ h1 {
     text-align: center;
 }
 
+.list li {
+    margin-bottom: 1em;
+    width: 20%;
+}
+
